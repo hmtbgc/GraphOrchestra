@@ -1,0 +1,16 @@
+Function find maximum clique in graph G: max_clique 
+  Initial max_cliques C ← list()
+  Function bron_kerbosch_recursive(r, p, x):
+    if p and x are both empty
+        C ← C.append(r)
+        return
+     //It is necessary to traverse a copy of p, because p will change in the loop.
+    Iterate over all vertex v in p.copy()
+        new_r ← r ∪ { v}
+        new_p ← p ∩ G.adjacent(v)
+        new_x ← x ∩ G.adjacent(v)
+       bron_kerbosch_recursive(new_r, new_p, new_x)
+       p ← p - { v }
+       x ← x ∪ {v}
+ bron_kerbosch_recursive(set(), set(G.keys()), set())
+ return max_clique of C

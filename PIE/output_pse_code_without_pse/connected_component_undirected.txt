@@ -1,0 +1,14 @@
+def connected_component_undirected(G):
+    visited = [False] * len(G)
+    count = 0
+    for i in range(len(G)):
+        if not visited[i]:
+            dfs(G, visited, i)
+            count += 1
+    return count
+
+def dfs(G, visited, node):
+    visited[node] = True
+    for neighbor in G[node]:
+        if not visited[neighbor]:
+            dfs(G, visited, neighbor)

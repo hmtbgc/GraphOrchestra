@@ -1,0 +1,2 @@
+def common_neighbors(G, u, v):
+    return list(set(G[u]) & set(G[v]))

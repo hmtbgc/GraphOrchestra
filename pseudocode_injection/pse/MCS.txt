@@ -1,0 +1,46 @@
+Function find the size of maximum common subgraph betweem graph G1(V1,E1) and G2(V2,E2):
+    # Initialization:
+    Create H_nodes to store matched node pair (u1,u2).
+    Create matched_nodes1 to store matched nodes in G1.
+    Create matched_nodes2 to store matched nodes in G2.
+    Create a dictionary node_map to map nodes from G1 to G2.
+    Create a dictionary node_map_reverse to map nodes from G2 to G1.
+
+    # Calculate Node Degree Differences and Sort:
+    tot_degree_diff ← []
+    for each pair (u1,u2) ∈ V1×V2 {
+        degree_diff ← |degree(u1) - degree(u2)|
+        add (degree_diff, u1, u2) to tot_degree_diff
+    }
+    sort tot_degree_diff in ascending order of degree_diff, and in descending order of degree(u1).
+
+    # Greedy Selection of Node Pairs:
+    for each pair (degree_diff, u1, u2) in tot_degree_diff {
+        if u1 and u2 are not matched {
+            map u1 to u2 and update node_map, node_map_reverse, matched_nodes1, matched_nodes2, and H_nodes.
+            create subgraph sg1 and sg2 from G1 and G2 using matched_nodes1 and matched_nodes2.
+            check if every edge in sg1 has a corresponding edge in sg2 and if every edge in sg2 has a corresponding edge in sg1 {
+                If any edge does not match, undo the match, restore node_map, node_map_reverse, matched_nodes1, matched_nodes2, and H_nodes.
+                continue next mapping trial
+            }
+            If the match is successful, use BFS to extend the match {
+                Initialize a queue with (u1, u2).
+                while queue is not empty {
+                    (v1, v2) ← dequeue queue.
+                    for each pair (k1, k2) ∈ neighbors(v1)×neighbors(v2) {
+                        if k1 and k2 are not matched and |degree(k1) - degree(k2)|<=2 {
+                            map k1 to k2 and update node_map, node_map_reverse, matched_nodes1, matched_nodes2, and H_nodes.
+                            create subgraph sg1 and sg2 from G1 and G2 using matched_nodes1 and matched_nodes2.
+                            check if every edge in sg1 has a corresponding edge in sg2 and if every edge in sg2 has a corresponding edge in sg1 {
+                                If any edge does not match, undo the match, restore node_map, node_map_reverse, matched_nodes1, matched_nodes2, and H_nodes.
+                                continue next mapping trial
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    # Return the result:
+    return length of H_nodes.

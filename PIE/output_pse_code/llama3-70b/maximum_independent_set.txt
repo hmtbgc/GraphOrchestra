@@ -1,0 +1,11 @@
+def maximum_independent_set(G):
+    n = len(G)
+    State = [0]*n
+    IS = []
+    vertices = sorted(range(n), key=lambda x: len(G[x]))
+    for v in vertices:
+        if State[v] == 0:
+            IS.append(v)
+            for u in G[v]:
+                State[u] = 1
+    return len(IS)

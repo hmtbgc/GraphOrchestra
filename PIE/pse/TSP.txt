@@ -1,0 +1,18 @@
+Function find travelling salesman path of complete graph G:
+    ans ← infinity
+    n ← |V|
+    for start ∈ V do {
+        length ← 0
+        for u ∈ V do
+            State[u] ← 0
+        v ← start
+        State[v] ← 1
+        for i ← 1 to n-1 do {
+            select u ∈ V that State[u] = 0 and G[v][u] is minimum
+            length ← length + G[v][u]
+            State[u] ← 1
+            v ← u
+        }
+        ans ← min(ans, length + G[v][start])
+    }
+    return ans

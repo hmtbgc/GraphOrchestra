@@ -1,0 +1,15 @@
+Finding all connected components (G) : [C_1,...,C_K] ;
+1. V ← G.nodes, V' ← ∅, K ← 1;
+2. result ← List();
+2. while V' ≠ V:
+3.     select s ∈ {x ∈ V | x ∉ V'};
+4.     V' ← V' ∪ {s};
+5.     Q ← { s }, C_K ← { s };
+6.     while Q ≠ ∅:
+7.         u ← Q.dequeue()
+8.         for each v ∈ G.adjacent(u):
+9.             if v ∉ V':
+10.                V' ← V' ∪ {v}, Q.enqueue(v), C_K ← C_K ∪ {v};
+11.    result ← result.append(C_K);
+12.    K ← K + 1;
+13.result ← result(List(C)).

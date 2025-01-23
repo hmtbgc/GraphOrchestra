@@ -1,0 +1,23 @@
+Function find Minimum Vertex Cover of graph G:
+    vertex_cover ← empty set
+    edges ← empty set
+
+    for each vertex and its neighbors in G:
+        for each neighbor:
+            if (vertex, neighbor) is not in edges and (neighbor, vertex) is not in edges:
+                add (vertex, neighbor) to edges
+
+    while edges is not empty:
+        max_coverage = -1
+        best_vertex = None
+        for each vertex and its neighbors in G:
+            covered_edges = {edge | edge in edges and vertex in edge}
+            coverage = size of covered_edges
+            if coverage > max_coverage:
+                max_coverage = coverage
+                best_vertex = vertex
+
+        add best_vertex to vertex_cover
+        edges = edges - {edge | edge in edges and best_vertex in edge}
+
+    return len(vertex_cover)

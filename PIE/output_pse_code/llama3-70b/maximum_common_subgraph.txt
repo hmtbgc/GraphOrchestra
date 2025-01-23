@@ -1,0 +1,63 @@
+from collections import deque
+import networkx as nx
+
+def maximum_common_subgraph(G1, G2):
+    H_nodes = []
+    matched_nodes1 = set()
+    matched_nodes2 = set()
+    node_map = {}
+    node_map_reverse = {}
+
+    tot_degree_diff = []
+    for u1 in G1.nodes:
+        for u2 in G2.nodes:
+            degree_diff = abs(G1.degree(u1) - G2.degree(u2))
+            tot_degree_diff.append((degree_diff, u1, u2))
+
+    tot_degree_diff.sort(key=lambda x: (x[0], -G1.degree(x[1])))
+
+    for degree_diff, u1, u2 in tot_degree_diff:
+        if u1 not in matched_nodes1 and u2 not in matched_nodes2:
+            node_map[u1] = u2
+            node_map_reverse[u2] = u1
+            matched_nodes1.add(u1)
+            matched_nodes2.add(u2)
+            H_nodes.append((u1, u2))
+
+            sg1 = G1.subgraph(matched_nodes1)
+            sg2 = G2.subgraph(matched_nodes2)
+
+            if not nx.is_isomorphic(sg1, sg2):
+                del node_map[u1]
+                del node_map_reverse[u2]
+                matched_nodes1.remove(u1)
+                matched_nodes2.remove(u2)
+                H_nodes.pop()
+                continue
+
+            queue = deque([(u1, u2)])
+            while queue:
+                v1, v2 = queue.popleft()
+                for k1 in G1.neighbors(v1):
+                    for k2 in G2.neighbors(v2):
+                        if k1 not in matched_nodes1 and k2 not in matched_nodes2 and abs(G1.degree(k1) - G2.degree(k2)) <= 2:
+                            node_map[k1] = k2
+                            node_map_reverse[k2] = k1
+                            matched_nodes1.add(k1)
+                            matched_nodes2.add(k2)
+                            H_nodes.append((k1, k2))
+
+                            sg1 = G1.subgraph(matched_nodes1)
+                            sg2 = G2.subgraph(matched_nodes2)
+
+                            if not nx.is_isomorphic(sg1, sg2):
+                                del node_map[k1]
+                                del node_map_reverse[k2]
+                                matched_nodes1.remove(k1)
+                                matched_nodes2.remove(k2)
+                                H_nodes.pop()
+                                continue
+
+                            queue.append((k1, k2))
+
+    return len(H_nodes)

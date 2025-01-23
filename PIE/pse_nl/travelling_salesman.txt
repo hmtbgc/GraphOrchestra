@@ -1,0 +1,13 @@
+The core idea of solving the Traveling Salesman Problem (TSP) in the provided code is to use a greedy approach to find a near-optimal path through all vertices of a complete graph. Here's a summary of the approach:
+1. Initialization: Start by setting the initial answer (ans) to infinity, which will eventually hold the length of the shortest path found.
+2. Iterate Over All Starting Vertices: For each vertex in the graph, treat it as the starting point of the path.
+3. Greedy Path Construction:
+    3.1. Initialize the path length to zero.
+    3.2. Mark the starting vertex as visited and set it as the current vertex.
+    3.3. For each of the remaining vertices (n-1 times), select the unvisited vertex that is closest to the current vertex (i.e., has the minimum edge weight to the current vertex).
+    3.4. Add the edge weight to the path length and mark the selected vertex as visited.
+    3.5. Move to the newly selected vertex and repeat the process until all vertices have been visited.
+4. Complete the Cycle: After visiting all vertices, return to the starting vertex to complete the cycle. Add the edge weight from the last visited vertex back to the starting vertex to the path length.
+5. Update the Best Path: Compare the total path length of the current cycle with the best path length found so far (ans). Update ans if the current path length is shorter.
+6. Return the Result: After evaluating all possible starting vertices, return the shortest path length found (ans).
+This approach is a heuristic method that aims to find a good (but not necessarily optimal) solution to the TSP by always choosing the nearest unvisited vertex at each step. The algorithm is efficient but does not guarantee the optimal solution, especially for larger graphs.

@@ -1,0 +1,14 @@
+from collections import deque
+
+def shortest_path_unweighted(G, u, v):
+    queue = deque([(u, [u], 0)])
+    visited = set()
+    while queue:
+        node, path, distance = queue.popleft()
+        if node == v:
+            return distance
+        visited.add(node)
+        for neighbor in G[node]:
+            if neighbor not in visited:
+                queue.append((neighbor, path + [neighbor], distance + 1))
+    return None

@@ -1,0 +1,20 @@
+from collections import deque
+
+def graph_diameter(G):
+    diameter = 0
+    for start in range(len(G)):
+        visited = set()
+        distance = {node: float('inf') for node in range(len(G))}
+        queue = deque([start])
+        distance[start] = 0
+        while queue:
+            current_node = queue.popleft()
+            visited.add(current_node)
+            for neighbor in G[current_node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    distance[neighbor] = distance[current_node] + 1
+                    queue.append(neighbor)
+        longest_path = max(distance.values())
+        diameter = max(diameter, longest_path)
+    return diameter

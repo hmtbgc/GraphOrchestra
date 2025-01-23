@@ -1,0 +1,12 @@
+Function find maximum independent set of graph G :
+  All nodes are re-ordered from smallest to largest by degree.
+  IS ← ∅;
+  for v ∈ V of G do
+    State[v] ← 0; 
+  for v ∈ V of G do
+    if State[v]=0 then
+      IS ← IS ∪ {v};
+      for each u in N(v) do
+        if State[u]=0 then
+          State[u] ← 1;
+  return length of IS.

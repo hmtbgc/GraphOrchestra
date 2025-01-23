@@ -1,0 +1,12 @@
+def maximum_independent_set(G):
+    n = len(G)
+    degrees = [len(neighbors) for neighbors in G]
+    order = sorted(range(n), key=lambda x: degrees[x])
+    state = [0] * n
+    IS = 0
+    for v in order:
+        if state[v] == 0:
+            IS += 1
+            for u in G[v]:
+                state[u] = 1
+    return IS

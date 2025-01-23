@@ -1,0 +1,13 @@
+def shortest_path_unweighted(G, u, v):
+    visited = [False] * len(G)
+    queue = [(u, 0)]
+    visited[u] = True
+
+    while queue:
+        node, distance = queue.pop(0)
+        if node == v:
+            return distance
+        for neighbor in G[node]:
+            if not visited[neighbor]:
+                queue.append((neighbor, distance + 1))
+                visited[neighbor] = True

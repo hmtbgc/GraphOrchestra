@@ -1,0 +1,14 @@
+def maximum_independent_set(G):
+    n = len(G)
+    degrees = [len(neighborhood) for neighborhood in G]
+    sorted_nodes = sorted(range(n), key=lambda i: degrees[i])
+    State = [0] * n
+    IS = 0
+
+    for v in sorted_nodes:
+        if State[v] == 0:
+            IS += 1
+            for u in G[v]:
+                State[u] = 1
+
+    return IS

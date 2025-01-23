@@ -1,0 +1,13 @@
+Finding shortest path between start and end in graph G: [start,node1,node2,...,end] ;
+1   Initialize queue Q with start node, path and distance 0: Q ← [(start, [start], 0)]
+2   Create set of visited nodes: V' ← { }
+3   While Q is not empty do 
+4       (node, path, distance) ← Q.dequeue()
+5       If node is the end node
+6           result ← path
+7       Mark node as visited: V' ← V' ∪ {node}
+8       Iterate over all neighbors of node
+9           If neighbor ∉ V'
+10              Enqueue (neighbor, list(path) + [neighbor], distance + 1) to Q
+11  If there's no path from start to end node
+12      result ← None

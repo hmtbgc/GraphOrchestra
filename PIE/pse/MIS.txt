@@ -1,0 +1,37 @@
+Your task is to create a Python function that solve the Maximum Independent Set problem in the given social network. In this network, each node represents a user, and each edge represents a friendship connection. 
+
+You need to identify the largest subset of users such that no two users in this subset are friends connected by an edge. 
+
+The input to your function will be a dictionary where keys are the names of users and values are lists of the user's friends.
+
+Your function should return a Maximum Independent Set in format:[UserA,UserB,UserC,UserD...].
+
+Please implement the function completely according to the following pseudocode:
+
+```pseudocode
+Function find maximum independent set of graph G : a maximum independent set S
+  nodes ← all nodes in G
+
+  Function recursive(nodes, index, current_set, best_set)
+    if index is equal to length of nodes
+      if no two nodes in current_set are neighbors and length of current_set > length of best_set
+          best_set ← current_set
+      return best_set
+
+    best_set ← recursive(nodes, index + 1, current_set, best_set)
+    new_current_set ← current_set ∪ { nodes[index]}
+    best_set ← recursive(nodes, index + 1, new_current_set, best_set)
+
+    return best_set as the maximum independent set S
+
+  max_independent_set ← recursive(nodes, 0, empty set, empty set)
+  return max_independent_set
+```
+
+Present your solution in the following format, do not write any example usage of the function:
+
+```python
+def MIS(adjacency_list):
+    # Your code here
+    pass
+```

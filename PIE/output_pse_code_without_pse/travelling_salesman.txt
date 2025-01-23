@@ -1,0 +1,17 @@
+def travelling_salesman(G):
+    n = len(G)
+    def tsp(i, visited, path, memo):
+        if len(visited) == n:
+            return path[-1] + G[path[-1]][path[0]]
+        if (i, tuple(visited), tuple(path)) in memo:
+            return memo[(i, tuple(visited), tuple(path))]
+        min_val = float('inf')
+        for j in range(n):
+            if j not in visited:
+                new_visited = visited | {j}
+                new_path = path + [j]
+                val = path[-1] + G[path[-1]][j] + tsp(j, new_visited, new_path, memo)
+                min_val = min(min_val, val)
+        memo[(i, tuple(visited), tuple(path))] = min_val
+        return min_val
+    return tsp(0, {0}, [0], {})

@@ -1,0 +1,6 @@
+Function find_common_neighbors(graph, node1, node2):
+    create an empty list common_neighbors: [ ]
+    Iterate all node in graph
+        if node is in both node1's and node2's neighbors
+            add node to common_neighbors
+    return len(common_neighbors)

@@ -1,0 +1,31 @@
+Your task is to create a Python function that identifies the shortest path between two specified entities in an unweighted undirected knowledge graph, minimizing the number of hops.
+
+The input to your function will be a dictionary where each key represents the name of a node in the graph, and the corresponding value is a list containing the names of all neighboring nodes connected to that node.
+
+Your function should return in the format: [Entity1, Entity2, ..., EntityN], where Entity1 and EntityN are the specified start and end entities, and Entity2 through EntityN-1 are the intermediate entities on the shortest path.
+
+Please implement the function according to the following pseudocode:
+
+```pseudocode
+Finding shortest path between start and end in graph G: [start,node1,node2,...,end] ;
+1   Initialize queue Q with start node, path and distance 0: Q ← [(start, [start], 0)]
+2   Create set of visited nodes: V' ← { }
+3   While Q is not empty do 
+4       (node, path, distance) ← Q.dequeue()
+5       If node is the end node
+6           result ← path
+7       Mark node as visited: V' ← V' ∪ {node}
+8       Iterate over all neighbors of node
+9           If neighbor ∉ V'
+10              Enqueue (neighbor, list(path) + [neighbor], distance + 1) to Q
+11  If there's no path from start to end node
+12      result ← None
+```
+
+Present your solution in the following format, do not write example usage of the function:
+
+```python
+def find_shortest_path(adjacency_list,start,end):
+    # Your code here
+    pass
+```

@@ -1,0 +1,14 @@
+def maximum_clique(G):
+    def bron_kerbosch_recursive(r, p, x, max_clique):
+        if not p and not x:
+            max_clique.append(r)
+        for v in list(p):
+            new_r = r | {v}
+            new_p = p & set(G[v])
+            new_x = x & set(G[v])
+            bron_kerbosch_recursive(new_r, new_p, new_x, max_clique)
+            p.remove(v)
+            x.add(v)
+    max_clique = []
+    bron_kerbosch_recursive(set(), set(range(len(G))), set(), max_clique)
+    return max(len(c) for c in max_clique)

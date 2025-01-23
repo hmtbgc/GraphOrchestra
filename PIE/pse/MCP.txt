@@ -1,0 +1,36 @@
+You are required to create a Python function that solve the Maximum Clique Problem for an undirected academic network. In this network, nodes represent authors and edges represent research collaborations. 
+
+Your objective is to find the largest subset of nodes such that every pair of vertices in this subset is connected by an edge.
+
+The input to your function will be a dictionary where keys are the names of authors and values are lists of collaborating authors.
+
+Your function should return a maximum clique.
+
+Please implement the function completely according to the following pseudocode:
+
+```pseudocode
+Function find maximum clique in graph G: max_clique 
+  Initial max_cliques C ← list()
+  Function bron_kerbosch_recursive(r, p, x):
+    if p and x are both empty
+        C ← C.append(r)
+        return
+     //It is necessary to traverse a copy of p, because p will change in the loop.
+    Iterate over all vertex v in p.copy()
+        new_r ← r ∪ { v}
+        new_p ← p ∩ G.adjacent(v)
+        new_x ← x ∩ G.adjacent(v)
+       bron_kerbosch_recursive(new_r, new_p, new_x)
+       p ← p - { v }
+       x ← x ∪ {v}
+ bron_kerbosch_recursive(set(), set(G.keys()), set())
+ return max_clique of C
+```
+
+Present your solution in the following format, do not write any example usage of the function:
+
+```python
+def find_max_clique(adjacency_list):
+    # Your code here
+    pass
+```

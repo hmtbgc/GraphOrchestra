@@ -1,0 +1,11 @@
+The pseudo-code you've provided outlines a basic algorithm for finding the shortest path between a starting node and an ending node in a graph. Here's a step-by-step explanation of its core idea in natural language:
+1. Initialization: The algorithm starts by creating a queue (Q) and initializing it with the starting node along with an empty path and a distance of 0. The path is represented as a list that contains the nodes visited so far, and the distance is the number of edges traversed to reach the current node.
+2. Visited Set: A set (V') is created to keep track of the nodes that have already been visited to avoid revisiting them and causing infinite loops in case of cycles in the graph.
+3. Processing Queue: The main loop of the algorithm continues as long as there are nodes in the queue. In each iteration, the algorithm dequeues the first node (along with its path and distance).
+4. Check for End Node: If the dequeued node is the end node, the algorithm has found a path from the start to the end. It saves this path as the result.
+5. Mark as Visited: The current node is marked as visited by adding it to the set V'.
+6. Explore Neighbors: The algorithm then looks at all the neighbors of the current node. For each neighbor:
+    6.1. If the neighbor has not been visited (i.e., it's not in the set V'), the algorithm considers it as a potential next step in the path.
+    6.2. It enqueues this neighbor along with the updated path (the current path with the neighbor appended) and the updated distance (the current distance plus one, since one more edge has been traversed).
+7. No Path Found: If the queue becomes empty and the algorithm has not found the end node, it means there is no path from the start to the end node. In this case, the result is set to None.
+In summary, this pseudo-code represents a breadth-first search (BFS) algorithm, which is used to traverse or search tree or graph data structures. It explores all the neighbors at the present depth prior to moving on to nodes at the next depth level. This approach ensures that the first time the end node is reached, the path found is the shortest path, as BFS explores nodes layer by layer, closest to the start node first.

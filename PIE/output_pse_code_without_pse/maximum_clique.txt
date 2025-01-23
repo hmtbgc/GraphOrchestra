@@ -1,0 +1,21 @@
+def maximum_clique(G):
+    n = len(G)
+    clique_size = 0
+
+    def is_clique(subset):
+        for i in subset:
+            for j in subset:
+                if i!= j and j not in G[i]:
+                    return False
+        return True
+
+    def backtrack(start, path, path_size):
+        nonlocal clique_size
+        if path_size > clique_size and is_clique(path):
+            clique_size = path_size
+        for i in range(start, n):
+            if i not in path:
+                backtrack(i, path + [i], path_size + 1)
+
+    backtrack(0, [], 0)
+    return clique_size

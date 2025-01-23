@@ -1,0 +1,15 @@
+def connected_component_undirected(G):
+    visited = set()
+    result = 0
+    for node in range(len(G)):
+        if node not in visited:
+            queue = [node]
+            visited.add(node)
+            while queue:
+                u = queue.pop(0)
+                for v in G[u]:
+                    if v not in visited:
+                        visited.add(v)
+                        queue.append(v)
+            result += 1
+    return result

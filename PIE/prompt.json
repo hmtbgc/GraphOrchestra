@@ -1,0 +1,53 @@
+{
+    "system": 
+        "As an expert in the field of graph algorithms, you will take on the role of interpreting descriptions of graph algorithms provided by the user. Based on these descriptions, you will abstract the problem into a graph algorithm issue and provide a Python code snippet that can be executed correctly. Please ensure that the Python code is executable without any comments. Please only output Python functions starting with def, without any other information, including test cases and comments.",
+    "common_neighbors":[
+        "Given a directed graph G with no weights on the edges, calculate the common neighbors of node pairs in the graph. The Python code will receive the graph G and two nodes u, v. The graph G is passed in the format of an adjacency list: G[i] stores the neighbors of i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a list representing the common neighbors of nodes u and v in graph G. def common_neighbors(G, u, v):"
+    ],
+    "shortest_path_unweighted": [
+        "Given a directed graph G with no weights on the edges, and two nodes u and v, calculate the length of the shortest path between the two points. The Python code will receive the graph G and nodes u, v. The graph G is passed in the format of an adjacency list. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the length of the shortest path between u and v. def shortest_path_unweighted(G, u, v):"
+    ],
+    "shortest_path_weighted": 
+        "Given a directed graph G with non-negative edge weights, and two nodes u and v, calculate the length of the shortest path between the two points. The Python code will receive the graph G and nodes u, v. The graph G is passed in the format of an adjacency list: G[i] contains pairs [j, w], indicating that there is a directed edge from node i to node j with weight w. All elements are integers, and the graph G is numbered starting from 0. Please complete the following Python code so that the function returns a value representing the length of the shortest path between u and v. def shortest_path_weighted(G, u, v):",
+    "graph_diameter": [
+        "Given an undirected graph G with no weights on the edges, calculate the diameter of the graph. The diameter of a graph is defined as the maximum length of the shortest path between any two vertices in the graph. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency list: G[i] stores the neighbors of node i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the diameter of graph G. def graph_diameter(G):"
+    ],
+    "connected_component_undirected": [
+        "Given an undirected graph G with no weights on the edges, calculate the number of connected components in the graph. A connected component X in an undirected graph is defined as a set of nodes such that any two nodes in X are connected by a path within X. The Python code will receive the graph G, which is passed in the format of an adjacency list: G[i] stores the neighbors of node i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the number of connected components in the undirected graph G. def connected_component_undirected(G):"
+    ],
+    "connected_component_directed": 
+        "Given a directed graph G with no weights on the edges, calculate the number of strongly connected components in the graph. A strongly connected component X in a directed graph is defined as a subgraph in which every pair of vertices is reachable from each other by a directed path. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency list: G[i] stores the directed neighbors of node i. All elements are integers, and the graph G is numbered starting from 0. Please complete the following Python code so that the function returns a value representing the number of strongly connected components in the directed graph G. def connected_component_directed(G):",
+    "travelling_salesman": [
+        "Given an undirected complete graph G where every pair of nodes is connected by an edge, and each edge has a weight, calculate the Traveling Salesman Problem (TSP) on the graph, which is the shortest cycle that visits each node exactly once and returns to the starting node. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency matrix: G[i][j] stores the weight of edge (i, j). All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code so that the function returns a value representing the solution to the Traveling Salesman Problem on the undirected graph G, i.e., the minimum edge weight sum of the cycle. def travelling_salesman(G):"
+    ],
+    "maximum_independent_set": [
+        "Given an undirected graph G with no weights on the edges, calculate the size of the maximum independent set on the graph. An independent set X on the graph is defined as a set of vertices such that no two vertices u, v in X are adjacent. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency list: G[i] stores the neighbors of i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the size of the maximum independent set of the undirected graph G. def maximum_independent_set(G):"
+    ],
+    "minimum_vertex_cover": [
+        "Given an undirected graph G with no weights on the edges, calculate the minimum vertex cover problem of the graph. A vertex cover X of a graph G is defined as a set of vertices such that every edge of G has at least one endpoint in X. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency list: G[i] stores the neighbors of i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the size of the minimum vertex cover of the undirected graph G. def minimum_vertex_cover(G):"
+    ],
+    "maximum_clique": [
+        "Given an undirected graph G with no weights on the edges, calculate the maximum clique problem of the graph. A clique X of a graph G is defined as a set of vertices such that there is an edge between any two nodes u, v in X. The Python code will receive the graph G, where the graph G is passed in the format of an adjacency list: G[i] stores the neighbors of i. All elements are integers, and the graph G is numbered starting from 0.",
+        "The algorithm process can be described as follows:",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the size of the maximum clique of the undirected graph G. def maximum_clique(G):"
+    ],
+    "maximum_common_subgraph": [
+        "Given two undirected graphs G1, G2 with no weights on the edges and no labels on the nodes, calculate the maximum common induced subgraph of G1 and G2. The Python code will receive two graphs G1 and G2, where both of them are passed in the format of networkx.Graph. All elements are integers, and G1, G2 are numbered starting from 0.",
+        "The algorithm process can be described as follows (The line starting with '#' is comment):",
+        "Please complete the following Python code according to provided algorithm description so that the function returns a value representing the size of the maximum common subgraph of G1 and G2. def maximum_common_subgraph(G1, G2):"
+    ]
+}

@@ -1,0 +1,16 @@
+The pseudo-code provided is an algorithm to compute the diameter of a graph G, which is defined as the longest shortest path between any two nodes in the graph. Here's a step-by-step explanation of the core idea in natural language:
+1. Initialize the diameter to 0. This variable will store the maximum distance found so far, which represents the diameter of the graph.
+2. Iterate over all nodes in the graph. This means the algorithm will be executed for each node in the graph as a starting point.
+3. For each starting node, create a set called 'visited' to keep track of the nodes that have been visited during the traversal, and a dictionary called 'distance' to store the shortest distance from the starting node to each node in the graph. Initially, set the distance to infinity for all nodes except the starting node, which is set to 0.
+4. Create a queue 'Q' and enqueue the starting node. This queue will be used to perform a breadth-first search (BFS) from the starting node.
+5. While the queue 'Q' is not empty, perform the following steps:
+   - Dequeue the next node from the queue, which is the 'current_node'.
+   - Mark the 'current_node' as visited.
+   - For each neighbor of the 'current_node' that has not been visited yet:
+     - Mark the neighbor as visited.
+     - Update the distance to the neighbor by adding 1 to the distance of the 'current_node' (since we're moving one edge away).
+     - Enqueue the neighbor to be processed in the next iteration.
+6. After the BFS from the starting node is complete, find the longest path from this starting node by taking the maximum value in the 'distance' dictionary. This represents the farthest node from the starting node.
+7. Update the diameter if the longest path found in this iteration is greater than the current diameter.
+8. After iterating over all nodes in the graph, return the diameter, which is the maximum distance found during all the iterations. This value represents the longest shortest path between any two nodes in the graph, which is the definition of the graph's diameter.
+In summary, this algorithm uses a breadth-first search from every node in the graph to find the longest shortest path, which is the diameter of the graph. It ensures that all nodes are visited and the distances are updated correctly by using a queue and a visited set.

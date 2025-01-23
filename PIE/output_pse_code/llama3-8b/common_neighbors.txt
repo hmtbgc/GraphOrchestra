@@ -1,0 +1,6 @@
+def common_neighbors(G, u, v):
+    common_neighbors = []
+    for i in range(len(G)):
+        if i!= u and i!= v and (i in G[u] and i in G[v]):
+            common_neighbors.append(i)
+    return common_neighbors

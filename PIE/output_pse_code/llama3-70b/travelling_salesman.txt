@@ -1,0 +1,29 @@
+def travelling_salesman(G):
+    n = len(G)
+    ans = float('inf')
+    
+    for start in range(n):
+        path_length = 0
+        visited = [False]*n
+        visited[start] = True
+        
+        current_vertex = start
+        for _ in range(n-1):
+            next_vertex = -1
+            min_weight = float('inf')
+            
+            for i in range(n):
+                if not visited[i] and G[current_vertex][i] < min_weight:
+                    next_vertex = i
+                    min_weight = G[current_vertex][i]
+            
+            path_length += min_weight
+            visited[next_vertex] = True
+            current_vertex = next_vertex
+        
+        path_length += G[current_vertex][start]
+        
+        if path_length < ans:
+            ans = path_length
+    
+    return ans

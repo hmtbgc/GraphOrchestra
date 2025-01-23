@@ -1,0 +1,23 @@
+from collections import deque
+
+def graph_diameter(G):
+    def bfs(node):
+        visited = set()
+        distance = {i: float('inf') for i in range(len(G))}
+        distance[node] = 0
+        q = deque([node])
+        visited.add(node)
+        while q:
+            current_node = q.popleft()
+            for neighbor in G[current_node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    distance[neighbor] = distance[current_node] + 1
+                    q.append(neighbor)
+        return distance
+
+    diameter = 0
+    for i in range(len(G)):
+        distance = bfs(i)
+        diameter = max(diameter, max(distance.values()))
+    return diameter

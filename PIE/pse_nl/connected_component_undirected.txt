@@ -1,0 +1,15 @@
+The pseudo-code you've provided describes an algorithm for finding all connected components in an undirected graph G. Here's a step-by-step explanation of its core idea in natural language:
+1. Initialization: Start by defining the set V as the set of all nodes in the graph G, and an empty set V' to keep track of visited nodes. Initialize K to 1, which will be used to index the connected components.
+2. Result List: Create an empty list called 'result' to store the connected components found.
+3. Main Loop: The main loop continues until all nodes in the graph have been visited (i.e., until V' is equal to V). This loop will iterate over all nodes to ensure that each node is processed at least once.
+4. Selecting a Starting Node: In each iteration of the loop, select a node s that has not yet been visited (i.e., s is in V but not in V').
+5. Mark as Visited: Add the selected node s to the set V' of visited nodes and initialize the current connected component C_K with just this node s.
+6. Queue Initialization: Create a queue Q and enqueue the starting node s. This queue will be used to perform a breadth-first search (BFS) from the starting node.
+7. BFS Loop: While the queue Q is not empty, perform the following steps:
+    7.1. Dequeue a node u from Q.
+    7.2. For each neighbor v of u in the graph G, check if v has not been visited (i.e., v is not in V').
+    7.3. If v has not been visited, mark it as visited by adding it to V', enqueue it into Q, and add it to the current connected component C_K.
+8. Appending to Result: Once all neighbors of a node have been processed and the queue Q is empty, append the current connected component C_K to the 'result' list.
+9. Increment Component Index: Increment K to prepare for finding the next connected component.
+10. Final Result: After all nodes have been visited and all connected components have been found, the 'result' list will contain all the connected components of the graph G.
+In summary, this algorithm uses a breadth-first search to explore each connected component of the graph, starting from an unvisited node. It keeps track of visited nodes to avoid revisiting them and to ensure that all nodes are eventually processed. The result is a list of all connected components in the graph.

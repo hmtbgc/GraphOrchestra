@@ -1,0 +1,21 @@
+def graph_diameter(G):
+    n = len(G)
+    def bfs(start):
+        visited = [False]*n
+        queue = [(start, 0)]
+        visited[start] = True
+        max_distance = 0
+        while queue:
+            node, distance = queue.pop(0)
+            max_distance = max(max_distance, distance)
+            for neighbor in G[node]:
+                if not visited[neighbor]:
+                    visited[neighbor] = True
+                    queue.append((neighbor, distance + 1))
+        return max_distance
+
+    diameter = 0
+    for i in range(n):
+        distance = bfs(i)
+        diameter = max(diameter, distance)
+    return diameter

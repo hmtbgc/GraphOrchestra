@@ -1,0 +1,87 @@
+Function find graph edit distance between graph G1(V1,E1) and graph G2(V2,E2):
+    # Set candidate and nofound window sizes based on the number of nodes in G1
+    If number of nodes in G1 < 10:
+        candidate_window_size = 6
+        nofound_window_size = 4
+    Else:
+        candidate_window_size = 5
+        nofound_window_size = 3
+
+    # Initialize sets and mappings
+    matched_nodes1 = empty set
+    matched_nodes2 = empty set
+    node_map = empty dictionary
+    reverse_node_map = empty dictionary
+
+    candidate_node_map = empty dictionary
+    min_cost = infinity
+    n = number of nodes in G1
+
+    # Find candidate matching nodes for each node in G1
+    For each node u1 in G1, find u2 in G2 such that:
+        1. degree difference <= 1 or labels match
+        2. length of candidate_node_map[u1] < candidate_window_size
+    Add u2 to candidate_node_map[u1]
+
+    # Sort nodes in G1 by degree in descending order
+    G1_nodes = sorted list of G1 nodes by degree (descending)
+
+    
+    # Define cost function
+    Function cost_func(G1, G2, node_map, reverse_node_map):
+        total_cost = 0
+        For each (u1, u2) in node_map:
+            If labels of u1 and u2 differ:
+                total_cost += 1
+        For each edge in G1:
+            If mapped edge not in G2:
+                total_cost += 1
+        For each edge in G2:
+            If reverse mapped edge not in G1:
+                total_cost += 1
+        Return total_cost
+
+    # Initialize output node map
+    output_node_map = None
+
+    # Define depth-first search (DFS) function
+    Function dfs(step):
+        If step == G1's number of nodes:
+            Calculate cost of current node_map
+            If current cost < min_cost:
+                Update min_cost and output_node_map
+            Return
+
+        u1 = G1_nodes[step]
+        flag = False
+        For each u2 in candidate_node_map[u1]:
+            If u2 is not visited:
+                flag = True
+                Mark u2 as visited
+                Update node_map and reverse_node_map
+                Add u1 and u2 to matched_nodes
+                Call dfs(step + 1)
+                Restore node_map and reverse_node_map
+                Remove u1 and u2 from matched_nodes
+                Mark u2 as not visited
+
+        If flag is False:
+            count = 0
+            For each unvisited u2:
+                count += 1
+                Mark u2 as visited
+                Update node_map and reverse_node_map
+                Add u1 and u2 to matched_nodes
+                Call dfs(step + 1)
+                Restore node_map and reverse_node_map
+                Remove u1 and u2 from matched_nodes
+                Mark u2 as not visited
+
+                If count >= nofound_window_size:
+                    Break
+
+    # Initialize visited array
+    visited = [False] * n
+    Call dfs(0)
+
+    Return min_cost, output_node_map

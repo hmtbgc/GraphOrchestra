@@ -1,0 +1,37 @@
+Your task is to create a Python function that calculate the diameter of an undirected knowledge graph.
+
+The diameter of a graph is the maximum distance between any pair of nodes in the graph.
+
+The input to your function will be a dictionary where each key represents the name of a node in the graph, and the corresponding value is a list containing the names of all neighboring nodes connected to that node.
+
+Your function should return the diameter of this network.
+
+Please implement the function completely according to the following pseudocode:
+
+```pseudocode
+Compute diameter of graph G(V,E): diameter
+  diameter ← 0
+  Iterate over all nodes in graph
+    visited ← set(), distance ← {node: float('inf') for node in graph}
+    Initialize queue Q with start node: Q ← [start]
+    distance[start] = 0
+    while Q is not empty do
+      current_node ← Q.dequeue()
+      visited ← visited ∪ { current_node}
+      Iterate over all neighbors of current_node
+        If neighbor ∉ V'
+          visited ← visited ∪ { neighbor}
+          distance[neighbor] ← distance[current_node] + 1
+          Enqueue neighbor to Q 
+
+    longest_path ← max(distance.values())
+    diameter ← max{diameter, longest_path}
+  return diameter
+```
+Present your solution in the following format, do not write example usage of the function:
+
+```python
+def GraphDiameter(adjcent_list):
+    # Your code here
+    pass
+```

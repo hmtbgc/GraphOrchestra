@@ -1,0 +1,27 @@
+import numpy as np
+
+def travelling_salesman(G):
+    n = len(G)
+    ans = float('inf')
+    for i in range(n):
+        visited = [False] * n
+        visited[i] = True
+        path_len = 0
+        current = i
+        for _ in range(n - 1):
+            min_dist = float('inf')
+            next_node = -1
+            for j in range(n):
+                if not visited[j] and G[current][j] < min_dist:
+                    min_dist = G[current][j]
+                    next_node = j
+            visited[next_node] = True
+            path_len += min_dist
+            current = next_node
+        path_len += G[current][i]
+        ans = min(ans, path_len)
+    return ans
+
+# Example usage:
+G = np.array([[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]])
+print(travelling_salesman(G))

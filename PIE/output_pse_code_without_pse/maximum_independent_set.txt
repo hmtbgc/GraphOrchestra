@@ -1,0 +1,21 @@
+def maximum_independent_set(G):
+    n = len(G)
+    color = [0] * n
+    max_independent_set = 0
+
+    def dfs(u):
+        nonlocal max_independent_set
+        color[u] = 1
+        for v in G[u]:
+            if color[v] == 0:
+                dfs(v)
+            elif color[v] == 1:
+                color[u] = 2
+                return
+        max_independent_set = max(max_independent_set, color.count(1))
+
+    for i in range(n):
+        if color[i] == 0:
+            dfs(i)
+
+    return max_independent_set

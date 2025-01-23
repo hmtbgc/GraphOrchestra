@@ -1,0 +1,45 @@
+def minimum_vertex_cover(G):
+    def dfs(node, visited, cover):
+        visited[node] = True
+        for neighbor in G[node]:
+            if not visited[neighbor]:
+                dfs(neighbor, visited, cover)
+        cover.add(node)
+        return cover
+
+    def greedy():
+        cover = set()
+        for i in range(len(G)):
+            if i not in cover:
+                cover.add(i)
+                for neighbor in G[i]:
+                    if neighbor not in cover:
+                        cover.add(neighbor)
+        return cover
+
+    def branch_and_bound():
+        def recursive_search(cover, current_node, visited):
+            if len(cover) == len(G) // 2:
+                return cover
+            if current_node == len(G):
+                return None
+            visited[current_node] = True
+            cover1 = recursive_search(cover, current_node + 1, visited)
+            if cover1 is not None:
+                return cover1
+            visited[current_node] = False
+            cover.add(current_node)
+            cover2 = recursive_search(cover, current_node + 1, visited)
+            if cover2 is not None:
+                return cover2
+            cover.remove(current_node)
+            return None
+
+        cover = set()
+        visited = [False] * len(G)
+        result = recursive_search(cover, 0, visited)
+        if result is not None:
+            return len(result)
+        return len(greedy())
+
+    return min(len(greedy()), branch_and_bound())

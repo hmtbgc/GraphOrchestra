@@ -1,0 +1,27 @@
+def travelling_salesman(G):
+    n = len(G)
+    ans = float('inf')
+    
+    for start in range(n):
+        visited = [False] * n
+        visited[start] = True
+        path_length = 0
+        current = start
+        
+        for _ in range(n - 1):
+            next_node = -1
+            min_dist = float('inf')
+            
+            for i in range(n):
+                if not visited[i] and G[current][i] < min_dist:
+                    min_dist = G[current][i]
+                    next_node = i
+            
+            path_length += min_dist
+            visited[next_node] = True
+            current = next_node
+        
+        path_length += G[current][start]
+        ans = min(ans, path_length)
+    
+    return ans

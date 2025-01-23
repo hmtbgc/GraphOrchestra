@@ -1,0 +1,24 @@
+def minimum_vertex_cover(G):
+    vertex_cover = set()
+    edges = set()
+    
+    for vertex in range(len(G)):
+        for neighbor in G[vertex]:
+            if (vertex, neighbor) not in edges and (neighbor, vertex) not in edges:
+                edges.add((vertex, neighbor))
+    
+    while edges:
+        max_coverage = -1
+        best_vertex = -1
+        
+        for vertex in range(len(G)):
+            covered_edges = {edge for edge in edges if vertex in edge}
+            coverage = len(covered_edges)
+            if coverage > max_coverage:
+                max_coverage = coverage
+                best_vertex = vertex
+        
+        vertex_cover.add(best_vertex)
+        edges = {edge for edge in edges if best_vertex not in edge}
+    
+    return len(vertex_cover)

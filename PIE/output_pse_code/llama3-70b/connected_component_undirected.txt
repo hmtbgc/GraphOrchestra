@@ -1,0 +1,23 @@
+def connected_component_undirected(G):
+    V = set(range(len(G)))
+    result = []
+    K = 1
+
+    while len(V) > 0:
+        s = next(iter(V))
+        V.remove(s)
+        C_K = [s]
+        Q = [s]
+
+        while Q:
+            u = Q.pop(0)
+            for v in G[u]:
+                if v in V:
+                    V.remove(v)
+                    Q.append(v)
+                    C_K.append(v)
+
+        result.append(C_K)
+        K += 1
+
+    return len(result)

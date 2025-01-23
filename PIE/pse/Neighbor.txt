@@ -1,0 +1,23 @@
+You are required to create a Python function that identifies all common neighbors for two specified authors in an undirected academic network represented by an adjacency list. In this network, nodes represent authors and edges represent academic collaboration relationships between authors.
+
+The input to your function will be a dictionary where keys are the names of authors and values are lists of collaborating authors, and author1,author2 for whom to find common collaborators.
+
+Your function should return a list of strings, each representing a common collaborator of the two specified authors.
+
+Please implement the function according to the following pseudocode:
+
+```pseudocode
+function find_common_neighbors(graph, node1, node2):
+    create an empty list common_neighbors: [ ]
+    Iterate all node in graph
+        if node is in both node1's and node2's neighbors
+            add node to common_neighbors
+    return common_neighbors
+```
+Present your solution in the following format, do not write example usage of the function:
+
+```python
+def find_common_neighbors(adjacency_list, author1, author2):
+    # Your code here
+    pass
+```
