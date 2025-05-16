@@ -1,2 +1,2 @@
-# PIE
-Code for paper ``Pseudocode-Injection Magic: Enabling LLMs to Tackle Graph Computational Tasks``
+# GraphOrchestra
+Code for paper ``GraphOrchestra: Leveraging LLMs to Tackle Graph Computational Tasks``
